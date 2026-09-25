@@ -2,6 +2,12 @@
 
 Sitio web estático para la recepción de solicitudes y estudios tomográficos orientados a la segmentación automática del hígado y de sus segmentos de Couinaud (I–VIII) mediante modelos de Deep Learning (3D U-Net).
 
+## Demo online
+
+Podés acceder a la versión desplegada del proyecto acá:
+
+👉 [Abrir la aplicación web](https://segmentacion-hepatica-web-theta.vercel.app/)
+
 ---
 
 ## 🔬 Características del proyecto
