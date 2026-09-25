@@ -11,7 +11,6 @@ import {
   Cpu,
   Mail,
   ArrowRight,
-  ArrowDown,
   Layers,
   Activity,
   ShieldAlert,
@@ -163,107 +162,266 @@ export default function Home() {
 
             {/* Visual Two-Stage Diagram Flow */}
             <div className="mb-14 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
-                {/* Step 1: Tomografía abdominal */}
-                <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs relative">
-                  <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 font-mono text-xs font-semibold mb-3">
-                    01
-                  </div>
-                  <h3 className="font-semibold text-slate-900 text-sm sm:text-base">
-                    Tomografía abdominal
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Cortes axiales contrastados (NIfTI o DICOM).
-                  </p>
-                </div>
+              <div className="flex items-center justify-between gap-4 mb-4">
+                <p className="text-xs sm:text-sm font-medium text-slate-600">
+                  Flujo completo de la cascada en una única secuencia.
+                </p>
+                <span className="text-[11px] text-slate-400 sm:hidden whitespace-nowrap">
+                  Deslizá →
+                </span>
+              </div>
 
-                {/* Arrow or connector */}
-                <div className="hidden md:flex justify-center text-slate-400">
-                  <ArrowRight className="w-5 h-5 text-slate-400" />
-                </div>
-                <div className="flex md:hidden justify-center text-slate-400 py-1">
-                  <ArrowDown className="w-5 h-5 text-slate-400" />
-                </div>
-
-                {/* Step 2: Segmentación del hígado */}
-                <div className="bg-white p-5 rounded-xl border border-[#0B2545]/20 ring-1 ring-[#0B2545]/10 shadow-xs">
-                  <div className="w-8 h-8 rounded-lg bg-[#0B2545] flex items-center justify-center text-white font-mono text-xs font-semibold mb-3">
-                    02
-                  </div>
-                  <div className="flex items-center justify-between">
+              <div className="overflow-x-auto pb-3 -mx-2 px-2 snap-x snap-mandatory">
+                <div className="flex items-stretch gap-3 min-w-max">
+                  {/* Step 1: Tomografía abdominal */}
+                  <div className="w-[220px] sm:w-[235px] bg-white p-5 rounded-xl border border-slate-200 shadow-xs snap-start shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-700 font-mono text-xs font-semibold mb-3">
+                      01
+                    </div>
                     <h3 className="font-semibold text-slate-900 text-sm sm:text-base">
-                      Segmentación del hígado
+                      Tomografía abdominal
                     </h3>
-                    <Badge variant="secondary" className="text-[10px] bg-sky-50 text-sky-800 border-sky-100">
-                      Etapa 1
-                    </Badge>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Volumen 3D de TC abdominal en formato NIfTI o DICOM.
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">
-                    3D U-Net delimita el parénquima hepático completo.
-                  </p>
-                </div>
 
-                {/* Arrow or connector */}
-                <div className="hidden md:flex justify-center text-slate-400">
-                  <ArrowRight className="w-5 h-5 text-slate-400" />
-                </div>
-                <div className="flex md:hidden justify-center text-slate-400 py-1">
-                  <ArrowDown className="w-5 h-5 text-slate-400" />
-                </div>
-
-                {/* Step 3: Segmentación de Couinaud */}
-                <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                  <div className="w-8 h-8 rounded-lg bg-sky-900 flex items-center justify-center text-white font-mono text-xs font-semibold mb-3">
-                    03
+                  <div className="flex items-center justify-center w-8 shrink-0 text-slate-400">
+                    <ArrowRight className="w-5 h-5" />
                   </div>
-                  <div className="flex items-center justify-between">
+
+                  {/* Step 2: Segmentación del hígado */}
+                  <div className="w-[220px] sm:w-[235px] bg-white p-5 rounded-xl border border-[#0B2545]/20 ring-1 ring-[#0B2545]/10 shadow-xs snap-start shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-[#0B2545] flex items-center justify-center text-white font-mono text-xs font-semibold mb-3">
+                      02
+                    </div>
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-semibold text-slate-900 text-sm sm:text-base">
+                        Segmentación del hígado
+                      </h3>
+                      <Badge variant="secondary" className="text-[10px] bg-sky-50 text-sky-800 border-sky-100 shrink-0">
+                        Etapa 1
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Una 3D U-Net genera la máscara binaria del hígado.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-center w-8 shrink-0 text-slate-400">
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+
+                  {/* Step 3: Segmentación de Couinaud */}
+                  <div className="w-[220px] sm:w-[235px] bg-white p-5 rounded-xl border border-slate-200 shadow-xs snap-start shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-sky-900 flex items-center justify-center text-white font-mono text-xs font-semibold mb-3">
+                      03
+                    </div>
+                    <div className="flex items-start justify-between gap-2">
+                      <h3 className="font-semibold text-slate-900 text-sm sm:text-base">
+                        Segmentación de Couinaud
+                      </h3>
+                      <Badge variant="secondary" className="text-[10px] bg-slate-100 text-slate-700 shrink-0">
+                        Etapa 2
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-slate-500 mt-1">
+                      La segunda 3D U-Net recibe la región hepática y asigna las clases anatómicas.
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-center w-8 shrink-0 text-slate-400">
+                    <ArrowRight className="w-5 h-5" />
+                  </div>
+
+                  {/* Step 4: Segmentos I–VIII */}
+                  <div className="w-[220px] sm:w-[235px] bg-white p-5 rounded-xl border border-slate-200 shadow-xs snap-start shrink-0">
+                    <div className="w-8 h-8 rounded-lg bg-emerald-700 flex items-center justify-center text-white font-mono text-xs font-semibold mb-3">
+                      04
+                    </div>
                     <h3 className="font-semibold text-slate-900 text-sm sm:text-base">
-                      Segmentación de Couinaud
+                      Segmentos I–VIII
                     </h3>
-                    <Badge variant="secondary" className="text-[10px] bg-slate-100 text-slate-700">
-                      Etapa 2
-                    </Badge>
+                    <p className="text-xs text-slate-500 mt-1">
+                      Máscara multiclase exportada en NIfTI para su revisión y visualización.
+                    </p>
                   </div>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Subclasificación anatómica en volumen enmascarado.
-                  </p>
-                </div>
-
-                {/* Arrow or connector */}
-                <div className="hidden md:flex justify-center text-slate-400">
-                  <ArrowRight className="w-5 h-5 text-slate-400" />
-                </div>
-                <div className="flex md:hidden justify-center text-slate-400 py-1">
-                  <ArrowDown className="w-5 h-5 text-slate-400" />
-                </div>
-
-                {/* Step 4: Segmentos I–VIII */}
-                <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                  <div className="w-8 h-8 rounded-lg bg-emerald-700 flex items-center justify-center text-white font-mono text-xs font-semibold mb-3">
-                    04
-                  </div>
-                  <h3 className="font-semibold text-slate-900 text-sm sm:text-base">
-                    Segmentos I–VIII
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-1">
-                    Máscara multi-etiqueta exportada a NIfTI.
-                  </p>
                 </div>
               </div>
 
-              {/* Exact explanatory text required by specification */}
               <div className="mt-8 pt-6 border-t border-slate-200/70 text-slate-700 text-sm sm:text-base leading-relaxed space-y-3">
                 <p>
-                  El sistema utiliza modelos de Deep Learning basados en
-                  arquitecturas U-Net 3D para procesar tomografías computadas
-                  abdominales. En una primera etapa identifica el hígado y
-                  posteriormente segmenta automáticamente sus regiones anatómicas
+                  El sistema utiliza una cascada de dos modelos basados en U-Net 3D.
+                  En una primera etapa identifica el hígado y, a partir de esa región,
+                  una segunda red segmenta automáticamente sus ocho regiones anatómicas
                   según la clasificación de Couinaud.
                 </p>
                 <p>
                   El resultado se entrega en formato NIfTI y puede visualizarse junto
                   con la tomografía original en herramientas como 3D Slicer.
                 </p>
+              </div>
+            </div>
+
+            {/* Cascade overview image */}
+            <div className="mb-14 rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-xs">
+              <div className="px-5 sm:px-6 py-4 border-b border-slate-100">
+                <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                  Esquema general
+                </span>
+                <h3 className="text-lg font-semibold text-slate-900 mt-0.5">
+                  Cascada de dos modelos 3D U-Net
+                </h3>
+              </div>
+              <div className="p-3 sm:p-5 bg-slate-50/60">
+                <img
+                  src="/images/pipeline-cascada.png"
+                  alt="Esquema de la cascada de dos modelos 3D U-Net: tomografía, segmentación hepática, segmentación de Couinaud y visualización final"
+                  className="w-full h-auto rounded-xl bg-white border border-slate-100"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            {/* Model architecture details */}
+            <div className="mb-14 grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <details className="group rounded-2xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+                <summary className="list-none cursor-pointer px-5 sm:px-6 py-5 flex items-center justify-between gap-4">
+                  <div>
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                      Etapa 1
+                    </span>
+                    <h3 className="font-semibold text-slate-900 mt-0.5">
+                      Arquitectura para segmentación del hígado
+                    </h3>
+                  </div>
+                  <span className="text-xs text-slate-500 group-open:hidden">Ver esquema</span>
+                  <span className="text-xs text-slate-500 hidden group-open:inline">Ocultar</span>
+                </summary>
+                <div className="border-t border-slate-100 p-3 bg-slate-50/60">
+                  <img
+                    src="/images/unet-higado.jpg"
+                    alt="Diagrama de la U-Net 3D utilizada para la segmentación binaria del hígado"
+                    className="w-full h-auto rounded-xl bg-white"
+                    loading="lazy"
+                  />
+                </div>
+              </details>
+
+              <details className="group rounded-2xl border border-slate-200 bg-white shadow-xs overflow-hidden">
+                <summary className="list-none cursor-pointer px-5 sm:px-6 py-5 flex items-center justify-between gap-4">
+                  <div>
+                    <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                      Etapa 2
+                    </span>
+                    <h3 className="font-semibold text-slate-900 mt-0.5">
+                      Arquitectura para segmentos de Couinaud
+                    </h3>
+                  </div>
+                  <span className="text-xs text-slate-500 group-open:hidden">Ver esquema</span>
+                  <span className="text-xs text-slate-500 hidden group-open:inline">Ocultar</span>
+                </summary>
+                <div className="border-t border-slate-100 p-3 bg-slate-50/60">
+                  <img
+                    src="/images/unet-couinaud.jpg"
+                    alt="Diagrama de la U-Net 3D utilizada para la segmentación multiclase de los segmentos de Couinaud"
+                    className="w-full h-auto rounded-xl bg-white"
+                    loading="lazy"
+                  />
+                </div>
+              </details>
+            </div>
+
+            {/* Internal test metrics */}
+            <div id="resultados" className="mb-14 scroll-mt-24">
+              <div className="max-w-2xl mb-8">
+                <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                  Resultados cuantitativos
+                </span>
+                <h3 className="text-2xl font-bold text-slate-900 tracking-tight mt-1">
+                  Desempeño en la prueba interna
+                </h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Métricas obtenidas sobre 32 pacientes reservados para prueba y no utilizados durante el entrenamiento.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Hígado · Dice</p>
+                  <p className="mt-2 text-3xl font-bold tracking-tight text-[#0B2545]">97,63 %</p>
+                  <p className="mt-1 text-xs text-slate-500">Segmentación binaria</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Hígado · IoU</p>
+                  <p className="mt-2 text-3xl font-bold tracking-tight text-[#0B2545]">95,39 %</p>
+                  <p className="mt-1 text-xs text-slate-500">Segmentación binaria</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Couinaud · Dice</p>
+                  <p className="mt-2 text-3xl font-bold tracking-tight text-[#0B2545]">81,56 %</p>
+                  <p className="mt-1 text-xs text-slate-500">Promedio multiclase</p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-xs">
+                  <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Couinaud · IoU</p>
+                  <p className="mt-2 text-3xl font-bold tracking-tight text-[#0B2545]">70,41 %</p>
+                  <p className="mt-1 text-xs text-slate-500">Promedio multiclase</p>
+                </div>
+              </div>
+
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-sm text-slate-600">
+                En Couinaud, el mejor caso del conjunto interno alcanzó un Dice promedio de <strong className="text-slate-900">92,67 %</strong> y el caso de menor desempeño obtuvo <strong className="text-slate-900">67,62 %</strong>.
+              </div>
+            </div>
+
+            {/* Qualitative examples */}
+            <div className="mb-14">
+              <div className="max-w-2xl mb-8">
+                <span className="text-xs font-semibold tracking-wider text-slate-500 uppercase">
+                  Ejemplos de segmentación
+                </span>
+                <h3 className="text-2xl font-bold text-slate-900 tracking-tight mt-1">
+                  Resultados cualitativos
+                </h3>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  Comparación sobre un caso del conjunto de prueba y ejemplo de aplicación sobre un estudio clínico externo.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-6">
+                <figure className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-xs">
+                  <div className="p-3 sm:p-5 bg-slate-50/60">
+                    <img
+                      src="/images/resultado-test.png"
+                      alt="Comparación entre máscara de referencia y predicción de segmentos de Couinaud en un paciente del conjunto de prueba"
+                      className="w-full h-auto rounded-xl bg-black"
+                      loading="lazy"
+                    />
+                  </div>
+                  <figcaption className="px-5 sm:px-6 py-4 border-t border-slate-100">
+                    <p className="font-semibold text-slate-900 text-sm">Caso del conjunto de prueba</p>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      La imagen muestra la máscara de referencia (GT) y la predicción del modelo sobre el mismo corte axial.
+                    </p>
+                  </figcaption>
+                </figure>
+
+                <figure className="rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-xs">
+                  <div className="p-3 sm:p-5 bg-slate-50/60">
+                    <img
+                      src="/images/resultado-caso-clinico.png"
+                      alt="Tomografía abdominal y predicción de segmentos de Couinaud en un estudio clínico externo sin máscara de referencia"
+                      className="w-full h-auto rounded-xl bg-black"
+                      loading="lazy"
+                    />
+                  </div>
+                  <figcaption className="px-5 sm:px-6 py-4 border-t border-slate-100">
+                    <p className="font-semibold text-slate-900 text-sm">Caso clínico externo</p>
+                    <p className="mt-1 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                      Aplicación del sistema sobre un estudio real. En este caso no se dispone de una máscara de referencia para comparación cuantitativa.
+                    </p>
+                  </figcaption>
+                </figure>
               </div>
             </div>
 
